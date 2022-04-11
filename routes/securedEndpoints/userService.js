@@ -13,14 +13,14 @@ router.post('/user', async (req,res)=>{
     const user = await createUser(data);
     res.status(201).json(user); 
 });
-router.get('/getPosts', async (req,res) =>{
-    const maxlimit = req.query.maxlimit;
-    const offset = parseInt(req.query.offset)||0;
-    const timestamp = req.query.timestamp;
-    const response = {};
-    response.data =  await getData(maxlimit,offset,timestamp);
-    response.timestamp = timestamp || new Date().toISOString();
-    res.status(200).json(response);
+//get all data for user
+router.get('/user/:userid/data', async (req,res) =>{
+    const query = {
+        owner: req.params.userid
+    }
+    const allData = await getAllAtRootLevel(query);
+    res.status(200).json(allData);
+
 });
 
 module.exports = router;
