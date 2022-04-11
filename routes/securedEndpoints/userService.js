@@ -3,7 +3,7 @@ const express = require('../../utils/express');
 const router = express.Router();
 const validator = require('../../middlewares/validationHandler');
 const {
-    createFile,createFolder,createUser,getAllAtRootLevel,moveFiletoAnotherFolder,getUser
+    createFile,createFolder,createUser,getAllAtRootLevel,moveFiletoAnotherFolder,getUser, deleteFile
 } = require('../../gRPCClient/serverCall');
 const req = require('express/lib/request');
 
@@ -36,7 +36,6 @@ router.get('/user/:username',async (req,res)=>{
     res.status(200).json(user); 
 })
 //get all data for user
-router.use('/user/:userid/data',)
 router.get('/user/:userid/data', async (req,res) =>{
     console.log('fetching all documents!');
     const query = {
@@ -60,6 +59,15 @@ router.patch('/user/:userid/file/:fileid', async(req,res)=>{
         parent: req.body.folderId
     }
     await moveFiletoAnotherFolder(data);
+    res.status(204).json();
+})
+
+router.delete('/user/:userid/file/:fileid', async(req,res)=>{
+    console.log('deleting file');
+    const data = {
+        _id: req.params.fileid,
+    }
+    await deleteFile(data);
     res.status(204).json();
 })
 module.exports = router;

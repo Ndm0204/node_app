@@ -78,8 +78,7 @@ function moveFiletoAnotherFolder(data){
     console.log('executing method: moveFiletoAnotherFolder');
     return new Promise((resolve,reject)=>{
         client.moveFile(data, (err,file)=>{
-            if(err) reject(err);
-            else resolve(file);
+            resolve(file);
         })
     });  
 }   
