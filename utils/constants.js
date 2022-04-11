@@ -1,0 +1,9 @@
+const OFFSET = 10;
+const REQUEST_METHOD_TYPE_POST = 'POST';
+const REQUEST_METHOD_TYPE_GET = 'GET';
+
+module.exports={
+    OFFSET,
+    REQUEST_METHOD_TYPE_GET,
+    REQUEST_METHOD_TYPE_POST
+}
