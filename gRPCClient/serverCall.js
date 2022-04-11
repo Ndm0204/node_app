@@ -12,6 +12,7 @@ const client = getClient();
         
     // })
 function createFolder(data){
+    console.log('creating folder');
     return new Promise((resolve,reject)=>{
         client.createFolder(data, (err,folder)=>{
             if(err) reject(err);
@@ -29,6 +30,7 @@ function createFolder(data){
     //         console.log(data);}
     // )
 function createFile(data){
+    console.log('creating file');
     return new Promise((resolve,reject)=>{
         client.createFile(data, (err,file)=>{
             if(err) reject(err);
@@ -43,6 +45,7 @@ function createFile(data){
     //     console.log(data);
     // })
 function getAllAtRootLevel(data){
+    console.log('getting all documents at root level');
     return new Promise((resolve,reject)=>{
         client.getAll(data, (err,allData)=>{
             if(err) reject(err);
@@ -56,6 +59,7 @@ function getAllAtRootLevel(data){
     //     console.log(data);
     // })
 function getAllFilesWithinFolder(data){
+    console.log('getting all files within folder');
     return new Promise((resolve,reject)=>{
         client.getFiles(data, (err,allFiles)=>{
             if(err) reject(err);
@@ -71,6 +75,7 @@ function getAllFilesWithinFolder(data){
     //     console.log(data);
     // })    
 function moveFiletoAnotherFolder(data){
+    console.log('executing method: moveFiletoAnotherFolder');
     return new Promise((resolve,reject)=>{
         client.moveFile(data, (err,file)=>{
             if(err) reject(err);
@@ -79,6 +84,7 @@ function moveFiletoAnotherFolder(data){
     });  
 }   
 function deleteFile(data){
+    console.log('executing method: deleteFile');
     return new Promise((resolve,reject)=>{
         client.deleteFile(data, (err,allFiles)=>{
             if(err) reject(err);
@@ -88,6 +94,7 @@ function deleteFile(data){
 }
 
 function createUser(data){
+    console.log('executing method: reateUser');
     return new Promise((resolve,reject)=>{
         client.createUser(data,(err,user)=>{
             if(err) reject(err);
@@ -95,8 +102,33 @@ function createUser(data){
         })
     })
 }
-    
-    
+function getUser(data){
+    console.log('executing method: getUser');
+    return new Promise((resolve,reject)=>{
+        client.getUser(data,(err,user)=>{
+            if(err) reject(err);
+            else resolve(user);
+        })
+    })
+}    
+function getFolder(data){
+    console.log('executing method: getFolder');
+    return new Promise((resolve,reject)=>{
+        client.getFolder(data,(err,folder)=>{
+            if(err) reject(err);
+            else resolve(folder);
+        })
+    })
+}        
+function deleteFolder(data){
+    console.log('executing method: deleteFolder');
+    return new Promise((resolve,reject)=>{
+        client.deleteFolder(data,(err,folder)=>{
+            if(err) reject(err);
+            else resolve(folder);
+        })
+    })
+}        
 module.exports={
     createFolder,
     createFile,
@@ -104,5 +136,8 @@ module.exports={
     getAllFilesWithinFolder,
     moveFiletoAnotherFolder,
     deleteFile,
-    createUser
+    createUser,
+    getUser,
+    getFolder,
+    deleteFolder,
 }    
